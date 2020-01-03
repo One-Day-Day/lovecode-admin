@@ -3,9 +3,10 @@ import React from 'react';
 import './App.css';
 import DefaultStore from './store';
 import {Provider} from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
-import { Menu, Tabs, Table } from 'antd';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import { Menu, Tabs, Table, Button } from 'antd';
 import './antd-theme.less';
+import ProblemListContainer from "./containers/problem-management/list";
 
 function App() {
     return (
@@ -20,9 +21,9 @@ function App() {
                         </Menu>
                     </div>
                     <div className='main'>
-                        <Tabs type='editable-card'>
-                            <Tabs.TabPane tab='问题管理' key='problem-management' closable={false}></Tabs.TabPane>
-                        </Tabs>
+                        <Switch>
+                            <Route path="/problems" component={ProblemListContainer}/>
+                        </Switch>
                     </div>
                 </div>
             </BrowserRouter>
