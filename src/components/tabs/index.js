@@ -9,31 +9,17 @@ class Tabs extends React.Component {
         </AntdTabs.TabPane>
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeKey: this.props.activeKey,
-            panes: this.props.panes,
-        }
-    }
-
     onEdit = (targetKey, action) => {
         this[action](targetKey);
     };
 
     remove = targetKey => {
-        this.props.onTabPaneRemove(targetKey);
-    };
-
-    onTabPaneChange = key => {
-        this.setState({
-            activeKey: key,
-        })
+        this.props.onRemove(targetKey);
     };
 
     render() {
         return (
-          <AntdTabs hideAdd type='editable-card' onEdit={this.onEdit} onChange={this.onTabPaneChange} activeKey={this.state.activeKey}>{this.props.panes}</AntdTabs>
+          <AntdTabs hideAdd type='editable-card' onEdit={this.onEdit} {...this.props}>{this.props.panes}</AntdTabs>
         );
     }
 }
