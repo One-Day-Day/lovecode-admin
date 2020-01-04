@@ -3,8 +3,8 @@ import React from 'react';
 import './App.css';
 import DefaultStore from './store';
 import {Provider} from 'react-redux';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import { Menu, Tabs, Table, Button } from 'antd';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {Menu} from 'antd';
 import './antd-theme.less';
 import ProblemListContainer from "./containers/problem-management/list";
 
