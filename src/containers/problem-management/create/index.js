@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Col, Form, Icon, Input, InputNumber, Row, Select, Upload} from "antd";
+import {Button, Col, Form, Icon, Input, InputNumber, Row, Select, Upload} from 'antd';
 
 class CreateProblemContainer extends React.Component {
     state = {
@@ -13,10 +13,10 @@ class CreateProblemContainer extends React.Component {
         outputDescription: '',
         hint: '',
         sampleInput: '',
-        sampleOutput: ''
+        sampleOutput: '',
     };
 
-    handleSubmit = event => {
+    handleSubmit(event) {
         event.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             console.log(values)
@@ -24,7 +24,7 @@ class CreateProblemContainer extends React.Component {
     };
 
     render() {
-        const { getFieldDecorator } = this.props.form;
+        const { getFieldDecorator, } = this.props.form;
         const {
             name,
             timeLimit,
@@ -45,8 +45,8 @@ class CreateProblemContainer extends React.Component {
                         {getFieldDecorator('name', {
                             initialValue: name,
                             rules: [
-                                {required: true, message: '请填写题目名称'}
-                            ]
+                                {required: true, message: '请填写题目名称',},
+                            ],
                         })(<Input placeholder='请输入题目名称' />)}
                     </Form.Item>
                     <Row>
@@ -55,8 +55,8 @@ class CreateProblemContainer extends React.Component {
                                 {getFieldDecorator('timeLimit', {
                                     initialValue: timeLimit,
                                     rules: [
-                                        {required: true, message: '请填写时间限制'}
-                                    ]
+                                        {required: true, message: '请填写时间限制',},
+                                    ],
                                 })(<InputNumber min={1} max={300000}/>)}
                             </Form.Item>
                         </Col>
@@ -65,8 +65,8 @@ class CreateProblemContainer extends React.Component {
                                 {getFieldDecorator('memoryLimit', {
                                     initialValue: memoryLimit,
                                     rules: [
-                                        {required: true, message: '请填写内存限制'}
-                                    ]
+                                        {required: true, message: '请填写内存限制',},
+                                    ],
                                 })(<InputNumber min={1} max={1048576}/>)}
                             </Form.Item>
                         </Col>
@@ -75,12 +75,12 @@ class CreateProblemContainer extends React.Component {
                         {getFieldDecorator('testcase', {
                             initialValue: testcase,
                             rules: [
-                                {required: true, message: '请上传测试用例'}
-                            ]
+                                {required: true, message: '请上传测试用例',},
+                            ],
                         })(
                             <Upload>
                                 <Button>
-                                    <Icon type="upload" /> 上传
+                                    <Icon type='upload' /> 上传
                                 </Button>
                             </Upload>
                         )}
@@ -90,9 +90,9 @@ class CreateProblemContainer extends React.Component {
                             initialValue: categories,
                         })(
                             <Select
-                                mode="multiple"
-                                style={{width: '100%'}}
-                                placeholder="选择题目分类"
+                                mode='multiple'
+                                style={{width: '100%',}}
+                                placeholder='选择题目分类'
                             >
                                 <Select.Option key={1}>A</Select.Option>
                                 <Select.Option key={2}>B</Select.Option>
@@ -131,7 +131,7 @@ class CreateProblemContainer extends React.Component {
                         })(<Input.TextArea rows={10}/>)}
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit">
+                        <Button type='primary' htmlType='submit'>
                             保存
                         </Button>
                     </Form.Item>
@@ -139,6 +139,6 @@ class CreateProblemContainer extends React.Component {
         );
     }
 }
-const WrappedCreateProblemForm = Form.create({ name: 'create' })(CreateProblemContainer);
+const WrappedCreateProblemForm = Form.create({ name: 'create', })(CreateProblemContainer);
 
 export default WrappedCreateProblemForm;

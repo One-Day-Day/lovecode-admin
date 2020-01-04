@@ -1,5 +1,5 @@
-import React from "react";
-import {Tabs as AntdTabs} from "antd";
+import React from 'react';
+import {Tabs as AntdTabs} from 'antd';
 import styles from './index.module.scss';
 import PropTypes from 'prop-types';
 
@@ -10,11 +10,11 @@ class Tabs extends React.Component {
         </AntdTabs.TabPane>
     };
 
-    onEdit = (targetKey, action) => {
+    onEdit(targetKey, action) {
         this[action](targetKey);
     };
 
-    remove = targetKey => {
+    remove(targetKey) {
         this.props.onRemove(targetKey);
     };
 
@@ -29,7 +29,7 @@ Tabs.propTypes = {
     onRemove: PropTypes.func,
     onChange: PropTypes.func,
     activeKey: PropTypes.string,
-    panes: PropTypes.array
+    panes: PropTypes.array,
 };
 
 export default Tabs;

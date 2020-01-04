@@ -1,36 +1,38 @@
-import React from "react";
-import Tabs from "../../components/tabs";
+import React from 'react';
+import Tabs from '../../components/tabs';
 
 class TabContainer extends React.Component {
     state = {
         activeKey: null,
-        panes: []
+        panes: [],
     };
 
     componentDidMount() {
         this.activePane(this.getDefaultActiveKey())
     }
 
-    getDefaultActiveKey = () => null;
+    getDefaultActiveKey() {
+        return null;
+    };
 
-    activePane = key => {
+    activePane (key) {
         this.setState({
-            activeKey: key
+            activeKey: key,
         })
     };
 
-    addPane = pane => {
+    addPane(pane) {
         this.setState({
             panes: [
                 ...this.state.panes,
-                pane
+                pane,
             ],
-            activeKey: pane.key
+            activeKey: pane.key,
         })
     };
 
-    onRemove = targetKey => {
-        let { activeKey } = this.state;
+    onRemove(targetKey) {
+        let { activeKey, } = this.state;
         let lastIndex;
         this.state.panes.forEach((pane, i) => {
             if (pane.key === targetKey) {
@@ -47,19 +49,21 @@ class TabContainer extends React.Component {
         } else if (panes.length === 0) {
             activeKey = this.getDefaultActiveKey();
         }
-        this.setState({ panes, activeKey });
+        this.setState({ panes, activeKey, });
     };
 
-    getDefaultPane = () => [];
+    getDefaultPane() {
+        return [];
+    };
 
-    getTabPaneList = () => {
+    getTabPaneList() {
         return [
             ...this.getDefaultPane(),
             ...this.state.panes,
         ];
     };
 
-    onChange = key => {
+    onChange(key) {
         this.setState({
             activeKey: key,
         })
@@ -67,7 +71,7 @@ class TabContainer extends React.Component {
 
     render() {
         return (
-            <Tabs onChange={this.onChange} onRemove={this.onRemove} activeKey={this.state.activeKey} panes={this.getTabPaneList()}/>
+            <Tabs onChange={this.onChange.bind(this)} onRemove={this.onRemove.bind(this)} activeKey={this.state.activeKey} panes={this.getTabPaneList()}/>
         );
     }
 }
