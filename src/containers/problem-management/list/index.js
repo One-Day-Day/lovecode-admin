@@ -1,7 +1,7 @@
 import React from "react";
 import {Button} from "antd";
 import Tabs from "../../../components/tabs";
-import CreateProblemContainer from "../create-problem";
+import CreateProblemContainer from "../creation";
 
 class ProblemListContainer extends React.Component {
     state = {
