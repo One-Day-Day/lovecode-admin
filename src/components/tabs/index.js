@@ -1,6 +1,7 @@
 import React from "react";
 import {Tabs as AntdTabs} from "antd";
 import styles from './index.module.scss';
+import PropTypes from 'prop-types';
 
 class Tabs extends React.Component {
     static TabPane = props => {
@@ -23,5 +24,12 @@ class Tabs extends React.Component {
         );
     }
 }
+
+Tabs.propTypes = {
+    onRemove: PropTypes.func,
+    onChange: PropTypes.func,
+    activeKey: PropTypes.string,
+    panes: PropTypes.array
+};
 
 export default Tabs;
