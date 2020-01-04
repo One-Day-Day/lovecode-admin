@@ -40,7 +40,7 @@ class CreateProblemContainer extends React.Component {
         } = this.state;
 
         return (
-                <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.handleSubmit.bind(this)}>
                     <Form.Item label='题目名称'>
                         {getFieldDecorator('name', {
                             initialValue: name,
