@@ -20,7 +20,7 @@ class Tabs extends React.Component {
 
     render() {
         return (
-          <AntdTabs hideAdd type='editable-card' onEdit={this.onEdit} {...this.props}>{this.props.panes}</AntdTabs>
+          <AntdTabs hideAdd type='editable-card' onEdit={this.onEdit.bind(this)} {...this.props}>{this.props.panes}</AntdTabs>
         );
     }
 }
