@@ -14,7 +14,7 @@ function App() {
             <BrowserRouter>
                 <div className='App'>
                     <div className='aside'>
-                        <Menu theme='dark' defaultSelectedKeys={['problem-management',]}>
+                        <Menu theme='dark' defaultSelectedKeys={['problem-management']}>
                             <Menu.Item key='problem-management'>
                                 <span>问题管理</span>
                             </Menu.Item>

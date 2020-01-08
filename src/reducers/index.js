@@ -1,3 +1,6 @@
 import { combineReducers } from 'redux';
+import problems from './problems';
 
-export default combineReducers({});
+export default combineReducers({
+    problems
+});

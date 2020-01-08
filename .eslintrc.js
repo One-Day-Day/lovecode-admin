@@ -9,11 +9,11 @@ module.exports = {
         'quotes': ['error', 'single'],
         'semi-style': ['error', 'last'],
         "comma-dangle": ["error", {
-            "arrays": "always",
-            "objects": "always",
+            "arrays": "only-multiline",
+            "objects": "only-multiline",
             "imports": "never",
-            "exports": "never",
-            "functions": "never"
+            "exports": "only-multiline",
+            "functions": "only-multiline"
         }]
     }
 };

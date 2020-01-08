@@ -32,7 +32,7 @@ class TabContainer extends React.Component {
     };
 
     onRemove(targetKey) {
-        let { activeKey, } = this.state;
+        let { activeKey } = this.state;
         let lastIndex;
         this.state.panes.forEach((pane, i) => {
             if (pane.key === targetKey) {
@@ -49,7 +49,7 @@ class TabContainer extends React.Component {
         } else if (panes.length === 0) {
             activeKey = this.getDefaultActiveKey();
         }
-        this.setState({ panes, activeKey, });
+        this.setState({ panes, activeKey });
     };
 
     getDefaultPane() {
