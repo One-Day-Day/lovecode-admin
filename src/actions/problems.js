@@ -5,5 +5,5 @@ const nameCreator = createActionPrefix('PROBLEM');
 
 export const createProblem = createAction(
     nameCreator('CREATE'),
-    data => httpClient.post('/api/problems', data),
+    data => httpClient.post('/api/problems', { ...data }),
 );

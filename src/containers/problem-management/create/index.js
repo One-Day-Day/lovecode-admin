@@ -1,5 +1,7 @@
 import React from 'react';
 import {Button, Col, Form, Icon, Input, InputNumber, Row, Select, Upload} from 'antd';
+import {connect} from 'react-redux';
+import {createProblem} from '../../../actions/problems';
 
 class CreateProblemContainer extends React.Component {
     state = {
@@ -19,7 +21,7 @@ class CreateProblemContainer extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
-            console.log(values)
+            this.props.createProblem(values);
         });
     };
 
@@ -139,6 +141,11 @@ class CreateProblemContainer extends React.Component {
         );
     }
 }
-const WrappedCreateProblemForm = Form.create({ name: 'create' })(CreateProblemContainer);
 
-export default WrappedCreateProblemForm;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  createProblem,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create({ name: 'create' })(CreateProblemContainer));
