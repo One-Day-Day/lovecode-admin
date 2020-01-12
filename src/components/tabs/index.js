@@ -2,13 +2,18 @@ import React from 'react';
 import {Tabs as AntdTabs} from 'antd';
 import styles from './index.module.scss';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 class Tabs extends React.Component {
-    static TabPane = props => {
+    static TabPane = connect(state => ({errors: state.errors}), {})(props => {
+        const { tabPaneKey } = props;
+        console.log(props.errors[tabPaneKey]);
+        const hasError = props.errors[tabPaneKey] !== undefined;
         return <AntdTabs.TabPane {...props}>
-            <div className={styles.container}>{props.children}</div>
+            { hasError && <div className={styles.errorInfoBar}>{props.errors[tabPaneKey]}</div> }
+            <div className={`${styles.container} ${hasError ? styles.withErrorInfoBar : ''}`}>{props.children}</div>
         </AntdTabs.TabPane>
-    };
+    });
 
     onEdit(targetKey, action) {
         this[action](targetKey);
@@ -33,3 +38,4 @@ Tabs.propTypes = {
 };
 
 export default Tabs;
+

@@ -1,31 +1,19 @@
 import React from 'react';
 import {Button} from 'antd';
-import Tabs from '../../../components/tabs';
 import CreateProblemContainer from '../create';
-import TabContainer from '../../base/TabContainer';
+import {createTabContainer} from '../../base/TabContainer';
 
-class ProblemListContainer extends TabContainer {
-
-    getDefaultActiveKey() {
-        return 'problem-list';
-    }
+class ProblemListContainer extends React.Component {
 
     onCreateProblem() {
-        const paneKey = `create-problem-${new Date().getTime()}`;
-        this.addPane(
-            <Tabs.TabPane tab='新建问题' key={paneKey} closable={true}>
-                <CreateProblemContainer />
-            </Tabs.TabPane>
-        );
+        this.props.addTabPane(CreateProblemContainer, {tab: '新建问题', closable: true});
     };
 
-    getDefaultPane() {
-        return [
-            <Tabs.TabPane tab='问题列表' key='problem-list' closable={false}>
-                <Button onClick={this.onCreateProblem.bind(this)}>新建问题</Button>
-            </Tabs.TabPane>,
-        ];
+    render () {
+        return (
+            <Button onClick={this.onCreateProblem.bind(this)}>新建问题</Button>
+        );
     }
 }
 
-export default ProblemListContainer;
+export default createTabContainer(ProblemListContainer, {tab: '问题列表', closable: false});
