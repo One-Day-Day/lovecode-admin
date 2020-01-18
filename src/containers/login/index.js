@@ -1,12 +1,19 @@
 import React from 'react';
-import {Button, Checkbox, Form, Icon, Input} from 'antd';
+import {Button, Form, Icon, Input, Spin} from 'antd';
 import styles from './index.module.scss';
+import {cleanErrorMessage, getToken} from '../../actions/login';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
+import {withRouter} from 'react-router';
 
 class LoginContainer extends React.Component {
+
     handleSubmit(e) {
+        this.props.cleanErrorMessage();
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                this.props.getToken(values.username, values.password);
                 console.log('Received values of form: ', values);
             }
         });
@@ -14,6 +21,11 @@ class LoginContainer extends React.Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
+        const defaultPage = '/admin/problems';
+        const { pathname } = this.props.location.from || { pathname: defaultPage };
+        if (this.props.loginSuccessfully) {
+            return (<Redirect to={{pathname}} />);
+        }
         return (
             <div className={styles.bg}>
                 <div className={styles.loginContainer}>
@@ -26,6 +38,8 @@ class LoginContainer extends React.Component {
                                 <Input
                                     prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
                                     placeholder='用户名'
+                                    onFocus={this.props.cleanErrorMessage}
+                                    disabled={this.props.authorizing}
                                 />,
                             )}
                         </Form.Item>
@@ -37,15 +51,20 @@ class LoginContainer extends React.Component {
                                     prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
                                     type='password'
                                     placeholder='密码'
+                                    onFocus={this.props.cleanErrorMessage}
+                                    disabled={this.props.authorizing}
                                 />,
                             )}
                         </Form.Item>
                         <Form.Item>
-                            <Button type='primary' htmlType='submit' className={styles.loginFormButton}>
-                                登录
-                            </Button>
+                            <Spin spinning={this.props.authorizing}>
+                                <Button type='primary' htmlType='submit' className={styles.loginFormButton}>
+                                    登录
+                                </Button>
+                            </Spin>
                             {/* 或 <a href=''>立即注册！</a> */}
                         </Form.Item>
+                        {this.props.error && <span className={styles.errorMessage}>{this.props.error.message}</span>}
                     </Form>
                 </div>
             </div>
@@ -53,4 +72,14 @@ class LoginContainer extends React.Component {
     }
 }
 
-export default Form.create({name: 'login'})(LoginContainer);
+const mapStateToProps = state => ({
+    error: state.auth.error,
+    authorizing: state.auth.authorizing,
+    loginSuccessfully: state.auth.token !== null,
+});
+const mapDispatchToProps = {
+    getToken,
+    cleanErrorMessage,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create({name: 'login'})(withRouter(LoginContainer)));

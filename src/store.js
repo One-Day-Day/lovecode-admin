@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import ReduxThunk from 'redux-thunk';
-import { promiseMiddleware } from 'redux-actions-helper';
-
+import promiseMiddleware from './utils/promiseMiddleware';
 import defaultReducers from './reducers';
 
 const middleware = [
