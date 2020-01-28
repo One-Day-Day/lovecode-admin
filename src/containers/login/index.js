@@ -26,7 +26,7 @@ class LoginContainer extends React.Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const defaultPage = '/admin/problems';
+        const defaultPage = '/admin/problem-management/problems';
         const { pathname } = this.props.location.from || { pathname: defaultPage };
         if (this.props.hasToken) {
             return (<Redirect to={{pathname}} />);

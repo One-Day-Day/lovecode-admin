@@ -36,7 +36,7 @@ function App() {
                         </div>
                         <div className='main'>
                             <Switch>
-                                <Route path='/admin/problems' component={ProblemListContainer}/>
+                                <Route path='/admin/problem-management/problems' component={ProblemListContainer}/>
                             </Switch>
                         </div>
                     </PrivateRoute>
