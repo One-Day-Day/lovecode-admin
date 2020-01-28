@@ -20,7 +20,6 @@ class LoginContainer extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 this.props.getToken(values.username, values.password);
-                console.log('Received values of form: ', values);
             }
         });
     };

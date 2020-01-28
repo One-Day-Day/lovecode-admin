@@ -7,7 +7,6 @@ import {connect} from 'react-redux';
 class Tabs extends React.Component {
     static TabPane = connect(state => ({errors: state.errors}), {})(props => {
         const { tabPaneKey } = props;
-        console.log(props.errors[tabPaneKey]);
         const hasError = props.errors[tabPaneKey] !== undefined;
         return <AntdTabs.TabPane {...props}>
             { hasError && <div className={styles.errorInfoBar}>{props.errors[tabPaneKey]}</div> }
