@@ -1,12 +1,18 @@
 import React from 'react';
 import {Button, Form, Icon, Input, Spin} from 'antd';
 import styles from './index.module.scss';
-import {cleanErrorMessage, getToken} from '../../actions/login';
+import {cleanErrorMessage, getToken, setToken} from '../../actions/login';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {withRouter} from 'react-router';
 
 class LoginContainer extends React.Component {
+    componentDidMount() {
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            this.props.setToken(token);
+        }
+    }
 
     handleSubmit(e) {
         this.props.cleanErrorMessage();
@@ -23,7 +29,7 @@ class LoginContainer extends React.Component {
         const { getFieldDecorator } = this.props.form;
         const defaultPage = '/admin/problems';
         const { pathname } = this.props.location.from || { pathname: defaultPage };
-        if (this.props.loginSuccessfully) {
+        if (this.props.hasToken) {
             return (<Redirect to={{pathname}} />);
         }
         return (
@@ -75,10 +81,12 @@ class LoginContainer extends React.Component {
 const mapStateToProps = state => ({
     error: state.auth.error,
     authorizing: state.auth.authorizing,
-    loginSuccessfully: state.auth.token !== null,
+    hasToken: state.auth.token !== null,
 });
+
 const mapDispatchToProps = {
     getToken,
+    setToken,
     cleanErrorMessage,
 };
 

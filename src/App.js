@@ -8,7 +8,6 @@ import {Menu} from 'antd';
 import './antd-theme.less';
 import ProblemListContainer from './containers/problem-management/list'
 import LoginContainer from './containers/login';
-import {setToken} from './actions/login';
 
 function PrivateRoute({children, ...rest}) {
     return (
@@ -20,7 +19,6 @@ function PrivateRoute({children, ...rest}) {
 }
 
 function App() {
-    DefaultStore.dispatch(setToken(sessionStorage.getItem('token')));
     return (
         <Provider store={DefaultStore}>
             <BrowserRouter>
