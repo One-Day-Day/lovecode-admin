@@ -9,6 +9,8 @@ import DefaultStore from './store';
 import './antd-theme.less';
 import ProblemListContainer from './containers/problem-management/list';
 import LoginContainer from './containers/login';
+import TabsContainer from './containers/base/TabsContainer';
+import TabsManager from './containers/base/TabsManager';
 
 function PrivateRoute({ children, path }) {
   return (
@@ -25,6 +27,13 @@ PrivateRoute.propTypes = {
 };
 
 function App() {
+  const stateManager = new TabsManager();
+  stateManager.addTabPane({
+    // eslint-disable-next-line react/display-name
+    render: (manager) => <ProblemListContainer manager={manager} />,
+    options: { closable: false, tab: '问题列表' },
+  });
+
   return (
     <Provider store={DefaultStore}>
       <BrowserRouter>
@@ -42,7 +51,9 @@ function App() {
             </div>
             <div className="main">
               <Switch>
-                <Route path="/admin/problem-management/problems" component={ProblemListContainer} />
+                <Route path="/admin/problem-management/problems">
+                  <TabsContainer manager={stateManager} />
+                </Route>
               </Switch>
             </div>
           </PrivateRoute>

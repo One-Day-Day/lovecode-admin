@@ -5,7 +5,7 @@ import * as PropTypes from 'prop-types';
 import styles from './index.module.scss';
 
 class Tabs extends React.Component {
-    static TabPane = connect((state) => ({ errors: state.errors }), {})((props) => {
+    static TabPane = connect((state) => ({ errors: state.tabs.errors }), {})((props) => {
       const { key } = props;
       const hasError = props.errors[key] !== undefined;
       return (

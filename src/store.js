@@ -10,7 +10,7 @@ const middleware = [
 
 let composeEnhancers = compose;
 
-if (process.env.REACT_APP_ENV === 'debug') {
+if (process.env.REACT_APP_ENV === 'debug' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 }
 
