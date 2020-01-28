@@ -13,7 +13,7 @@ export function createTabContainer(component, options) {
 
     return (
       // eslint-disable-next-line react/jsx-props-no-spreading
-      <Tabs.TabPane {...options} tabPaneKey={tabPaneKey}>
+      <Tabs.TabPane {...options} key={tabPaneKey}>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...props} />
       </Tabs.TabPane>
@@ -108,8 +108,8 @@ export function createTabContainer(component, options) {
   }
 
   TabContainer.propTypes = {
-    showErrorInfoBar: PropTypes.func,
-    closeErrorInfoBar: PropTypes.func,
+    showErrorInfoBar: PropTypes.func.isRequired,
+    closeErrorInfoBar: PropTypes.func.isRequired,
   };
 
   const mapStateToProps = () => ({});

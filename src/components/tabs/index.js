@@ -6,12 +6,12 @@ import styles from './index.module.scss';
 
 class Tabs extends React.Component {
     static TabPane = connect((state) => ({ errors: state.errors }), {})((props) => {
-      const { tabPaneKey } = props;
-      const hasError = props.errors[tabPaneKey] !== undefined;
+      const { key } = props;
+      const hasError = props.errors[key] !== undefined;
       return (
         // eslint-disable-next-line react/jsx-props-no-spreading
         <AntdTabs.TabPane {...props}>
-          { hasError && <div className={styles.errorInfoBar}>{props.errors[tabPaneKey]}</div> }
+          { hasError && <div className={styles.errorInfoBar}>{props.errors[key]}</div> }
           <div className={`${styles.container} ${hasError ? styles.withErrorInfoBar : ''}`}>{props.children}</div>
         </AntdTabs.TabPane>
       );
@@ -34,8 +34,8 @@ class Tabs extends React.Component {
 }
 
 Tabs.propTypes = {
-  onRemove: PropTypes.func,
-  onChange: PropTypes.func,
+  onRemove: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   activeKey: PropTypes.string,
   panes: PropTypes.array,
 };

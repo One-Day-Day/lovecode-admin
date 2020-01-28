@@ -20,8 +20,8 @@ function PrivateRoute({ children, path }) {
 }
 
 PrivateRoute.propTypes = {
-  children: PropTypes.array,
-  path: PropTypes.string,
+  children: PropTypes.any,
+  path: PropTypes.string.isRequired,
 };
 
 function App() {

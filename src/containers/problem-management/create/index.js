@@ -180,7 +180,10 @@ class CreateProblemContainer extends React.Component {
 }
 
 CreateProblemContainer.propTypes = {
-  form: PropTypes.any,
+  form: PropTypes.shape({
+    getFieldDecorator: PropTypes.func.isRequired,
+    validateFieldsAndScroll: PropTypes.func.isRequired,
+  }),
   showErrorInfoBar: PropTypes.func,
 };
 
