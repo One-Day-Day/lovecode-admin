@@ -12,28 +12,28 @@ function isDeferred(val) {
 // eslint-disable-next-line max-params
 function handlePromise(actionPromise, action, dispatch, isAutoDispatchResult) {
   return isAutoDispatchResult
-      ? actionPromise
-          .then((result) => {
-            dispatch({
-              payload: result,
-              type: `${action.type}__SUCCESS`,
-              meta: action.meta,
-            });
-            return result;
-          })
-          .catch((error) => {
-            dispatch({
-              error: true,
-              payload: error,
-              type: `${action.type}__FAIL`,
-              meta: action.meta,
-            });
-            return Promise.reject(error);
-          })
-      : actionPromise;
+    ? actionPromise
+      .then((result) => {
+        dispatch({
+          payload: result,
+          type: `${action.type}__SUCCESS`,
+          meta: action.meta,
+        });
+        return result;
+      })
+      .catch((error) => {
+        dispatch({
+          error: true,
+          payload: error,
+          type: `${action.type}__FAIL`,
+          meta: action.meta,
+        });
+        return Promise.reject(error);
+      })
+    : actionPromise;
 }
 
-export default ({ dispatch }) => next => (action) => {
+export default ({ dispatch }) => (next) => (action) => {
   if (!isFSA(action)) {
     return next(action);
   }

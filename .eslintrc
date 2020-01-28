@@ -1,0 +1,152 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js"
+        ]
+      }
+    },
+    "sort-imports": ["error", {
+      "ignoreCase": false,
+      "ignoreDeclarationSort": false,
+      "ignoreMemberSort": false,
+      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+    }]
+  },
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.spec.js"
+        ]
+      }
+    ],
+    "import/no-unresolved": [
+      2,
+      {
+        "ignore": [
+          ".png"
+        ]
+      }
+    ],
+    "import/named": [
+      2,
+      {
+        "ignore": [
+          ".png"
+        ]
+      }
+    ],
+    "no-underscore-dangle": [
+      0
+    ],
+    "react/forbid-prop-types": [
+      0
+    ],
+    "no-undef": [
+      0
+    ],
+    "import/prefer-default-export": [
+      0
+    ],
+    "class-methods-use-this": [
+      0
+    ],
+    "no-use-before-define": "off",
+    "consistent-return": [
+      0
+    ],
+    "max-statements": [
+      2,
+      11,
+      {
+        "ignoreTopLevelFunctions": true
+      }
+    ],
+    "max-lines": [
+      2,
+      {
+        "max": 1580,
+        "skipBlankLines": true
+      }
+    ],
+    "react/no-unused-prop-types": [
+      1,
+      {
+        "skipShapeProps": true
+      }
+    ],
+    "react/prefer-stateless-function": [
+      0
+    ],
+    "prefer-promise-reject-errors": "off",
+    "max-len": "off",
+    "camelcase": "off",
+    "prefer-destructuring": "off",
+    "no-return-assign": "off",
+    "react/no-deprecated": "off",
+    "react/require-default-props": "off",
+    "react/no-array-index-key": "off",
+    "react/destructuring-assignment": "off",
+    "react/no-access-state-in-setstate": "off",
+    "react/prop-types": "error",
+    "react/sort-comp": "off",
+    "react/no-unused-state": "off",
+    "react/default-props-match-prop-types": "off",
+    "no-restricted-syntax": "off",
+    "no-await-in-loop": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "no-shadow": "off",
+    "react/no-this-in-sfc": "off",
+    "object-curly-newline": ["error", {
+      "ObjectPattern": {
+        "multiline": true
+      }
+    }],
+    "react/display-name": "error",
+    "complexity": [
+      2,
+      15
+    ],
+    "react/jsx-key": "error",
+    "max-lines-per-function": [
+      2,
+      100
+    ]
+  },
+  "plugins": [
+    "react"
+  ],
+  "env": {
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
+  },
+  "overrides": [
+  {
+    "files": [
+      "*.spec.js"
+    ],
+    "rules": {
+      "max-lines-per-function": 0,
+      "max-statements": 0
+    }
+  }
+  ]
+}
