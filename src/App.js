@@ -3,14 +3,12 @@ import React from 'react';
 import './App.css';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { Menu } from 'antd';
 import * as PropTypes from 'prop-types';
 import DefaultStore from './store';
 import './antd-theme.less';
-import ProblemListContainer from './containers/problem-management/list';
 import LoginContainer from './containers/login';
-import TabsContainer from './containers/base/TabsContainer';
-import TabsManager from './containers/base/TabsManager';
+import { LeftMenu } from './containers/menu';
+import routes from './config/route';
 
 function PrivateRoute({ children, path }) {
   return (
@@ -26,13 +24,8 @@ PrivateRoute.propTypes = {
   path: PropTypes.string.isRequired,
 };
 
-function App() {
-  const stateManager = new TabsManager();
-  stateManager.addTabPane({
-    component: ProblemListContainer,
-    options: { closable: false, tab: '问题列表' },
-  });
 
+function App() {
   return (
     <Provider store={DefaultStore}>
       <BrowserRouter>
@@ -42,17 +35,11 @@ function App() {
           </Route>
           <PrivateRoute path="/admin">
             <div className="aside">
-              <Menu theme="dark" defaultSelectedKeys={['problem-management']}>
-                <Menu.Item key="problem-management">
-                  <span>问题管理</span>
-                </Menu.Item>
-              </Menu>
+              <LeftMenu />
             </div>
             <div className="main">
               <Switch>
-                <Route path="/admin/problem-management/problems">
-                  <TabsContainer manager={stateManager} />
-                </Route>
+                {routes.map(({ path, render, key }) => <Route key={key} path={path} render={render} />)}
               </Switch>
             </div>
           </PrivateRoute>
