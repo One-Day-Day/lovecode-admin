@@ -1,3 +1,3 @@
 import httpClient from '../utils/http';
 
-export const createProblem = (data) => httpClient.post('/api/tabs', { ...data });
+export const createProblem = (data) => httpClient.post('/api/problems', { ...data });

@@ -29,8 +29,7 @@ PrivateRoute.propTypes = {
 function App() {
   const stateManager = new TabsManager();
   stateManager.addTabPane({
-    // eslint-disable-next-line react/display-name
-    render: (manager) => <ProblemListContainer manager={manager} />,
+    component: ProblemListContainer,
     options: { closable: false, tab: '问题列表' },
   });
 

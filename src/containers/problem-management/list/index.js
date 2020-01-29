@@ -1,14 +1,12 @@
 import React from 'react';
 import { Button } from 'antd';
 import * as PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import CreateProblemContainer from '../create';
-import { addTabPane } from '../../../actions/tabs';
 
 class ProblemListContainer extends React.Component {
   onCreateProblem = () => {
     this.props.manager.addTabPane({
-      render: () => <CreateProblemContainer />,
+      component: CreateProblemContainer,
       options: { tab: '新建问题', closable: true },
     });
   };
@@ -22,11 +20,10 @@ class ProblemListContainer extends React.Component {
 
 ProblemListContainer.propTypes = {
   addTabPane: PropTypes.func,
-  manager: PropTypes.object,
+  manager: PropTypes.shape({
+    addTabPane: PropTypes.func,
+  }),
 };
 
-const mapStateToProps = () => ({});
-const mapDispatchToProps = {
-  addTabPane,
-};
-export default connect(mapStateToProps, mapDispatchToProps)(ProblemListContainer);
+
+export default ProblemListContainer;

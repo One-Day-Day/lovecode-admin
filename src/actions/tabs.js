@@ -9,20 +9,5 @@ export const showErrorInfoBar = createAction(
 
 export const closeErrorInfoBar = createAction(
   nameCreator('CLOSE_ERROR_INFO_BAR'),
-  (tabPaneKey) => tabPaneKey,
-);
-
-export const addTabPane = createAction(
-  nameCreator('ADD_TAB_PANE'),
-  (layoutName, tabPane) => ({ layoutName, tabPane }),
-);
-
-export const removeTabPane = createAction(
-  nameCreator('REMOVE_TAB_PANE'),
-  (layoutName, tabPaneKey) => ({ layoutName, tabPaneKey }),
-);
-
-export const activeTabPane = createAction(
-  nameCreator('ACTIVE_TAB_PANE'),
-  (layoutName, key) => ({ layoutName, key }),
+  (targetKey) => targetKey,
 );

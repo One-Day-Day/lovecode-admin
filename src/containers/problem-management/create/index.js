@@ -26,7 +26,7 @@ class CreateProblemContainer extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       createProblem(values)
         .catch(() => {
-          this.props.showErrorInfoBar('保存失败');
+          this.props.showErrorInfoBar('保存失败', { autoClose: true });
         });
     });
   };
@@ -185,6 +185,7 @@ CreateProblemContainer.propTypes = {
     validateFieldsAndScroll: PropTypes.func.isRequired,
   }),
   showErrorInfoBar: PropTypes.func,
+  closeErrorInfoBar: PropTypes.func,
 };
 
 export default Form.create({ name: 'create' })(CreateProblemContainer);

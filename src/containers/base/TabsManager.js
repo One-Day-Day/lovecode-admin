@@ -1,11 +1,6 @@
-import React from 'react';
 import Tabs from '../../components/tabs';
 
 const getKey = () => `tab-pane-${new Date().getTime()}`;
-
-export function mapToTabPane(key, child, { closable, tab }) {
-  return (<Tabs.TabPane key={key} tab={tab} closable={closable}>{child}</Tabs.TabPane>);
-}
 
 export default class TabsManager {
   constructor(initSate = {}) {
@@ -17,10 +12,10 @@ export default class TabsManager {
     this.listeners = [];
   }
 
-  addTabPane({ render, options }) {
+  addTabPane({ component, options }) {
     const key = getKey();
     this.state.activeKey = key;
-    this.state.panes.push(mapToTabPane(key, render(this), options));
+    this.state.panes.push(Tabs.createTabPane({ ...options, key })(component, { manager: this }));
     this.fire();
   }
 
